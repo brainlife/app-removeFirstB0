@@ -7,7 +7,7 @@ mkdir outDWI tmp
 
 # split dwi images on t axis
 echo "fslsplit"
-fslsplit ${dwi} dwi_split -t
+fslsplit ${dwi} ./tmp/dwi_split -t
 
 # remove first b0
 echo "remove first b0"
