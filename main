@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -l walltime=0:10:00
+#PBS -N removeFirstB0
+
+module load singularity 2> /dev/null
+
+set -e
+
+echo "remove first b0"
+time singularity exec -e docker://brainlife/fsl:5.0.9 ./removeFirstB0.sh
