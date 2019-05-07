@@ -3,7 +3,7 @@
 dwi=`jq -r '.dwi' config.json`
 bvals=`jq -r '.bvals' config.json`
 
-mkdir outDWI
+mkdir outDWI tmp
 
 # split dwi images on t axis
 echo "fslsplit"
@@ -11,11 +11,11 @@ fslsplit ${dwi} dwi_split -t
 
 # remove first b0
 echo "remove first b0"
-rm -rf dwi_split0000.nii.gz
+rm -rf ./tmp/dwi_split0000.nii.gz
 
 # merge remaining images into new dwi file
 echo "fslmerge"
-fslmerge -t ./outDWI/dwi.nii.gz *dwi_split*
+fslmerge -t ./outDWI/dwi.nii.gz ./tmp/*dwi_split*
 
 # remove first b0 from bvals
 echo "fix bvals"
@@ -26,7 +26,7 @@ cp -v dwi.bvecs ./outDWI/
 
 # remove unneccesary files
 echo "remove split files"
-rm -rf *dwi_split*
+rm -rf tmp
 
 if [ -f ./outDWI/dwi.nii.gz ];
 then
