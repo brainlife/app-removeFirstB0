@@ -28,7 +28,7 @@ cp -v dwi.bvecs ./outDWI/
 echo "remove split files"
 rm -rf *dwi_split*
 
-if [ -f dwi.nii.gz ];
+if [ -f ./outDWI/dwi.nii.gz ];
 then
 	echo 0 > finished
 else
